@@ -1,0 +1,58 @@
+.Gamefield {
+  border-radius: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 250px;
+  height: 250px;  
+  align-content: space-between;
+}
+
+.Part {
+  width: 50%;
+  height: 49%;
+  opacity: .6 ;
+  border: 1px solid white;
+}
+
+.Part:first-child {
+  background-color: red;
+  border-radius: 100% 0 0 0;
+}
+
+.Part:nth-child(2){
+  background-color: blue;
+  border-radius: 0 0 0 100%;
+}
+
+.Part:nth-child(3){
+  background-color: green;
+  border-radius: 0 100% 0 0;
+}
+
+.Part:last-child {  
+  background-color: yellow;
+  border-radius: 0 0 100% 0;
+} 
+
+.Part:hover{
+  border: 1.5px solid black;
+}
+
+.isClicked {
+  opacity: 1;
+}
+
+.isVisible {
+  display: none;
+}
+
+.result {
+  display: none;
+}
+
+.lose { 
+  font-size: 30px;
+  color: red;
+  display: block;
+}
