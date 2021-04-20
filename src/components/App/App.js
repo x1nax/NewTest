@@ -52,6 +52,7 @@ class App extends Component {
   click: 1,
   difficult: 1500,
   isVisible: true,
+  canIclicked: true,
  };
 
  chooseLevel= (level) =>{
@@ -70,7 +71,6 @@ class App extends Component {
 
  componentDidMount() {
   for(let i=0; i<this.state.round; i++){
-    console.log('Вызвана функция')
     this.setState({progAnswers:this.state.progAnswers.concat(Math.floor(Math.random() * (Math.floor(5) - Math.ceil(1))) + Math.ceil(1))});  
   }
  };
@@ -79,12 +79,12 @@ class App extends Component {
  getAnswers = () => {
   this.setState({clientAnswers: []});
   for(let i=this.state.round; i<=this.state.round; i++){
-    console.log('Вызвана функция')
     this.setState({progAnswers:this.state.progAnswers.concat(Math.floor(Math.random() * (Math.floor(5) - Math.ceil(1))) + Math.ceil(1))});  
   }
  };
 
  answersLight = () => {
+   console.log(this.state.canIclicked)
     let index = 0;
     let int = this.state.difficult;
     let lightning = setInterval(() => {
@@ -95,6 +95,7 @@ class App extends Component {
     }, int);
     setTimeout(() => {
      clearInterval(lightning);
+     this.setState({canIclicked: false});
     }, this.state.round*int+int);
  };
 
@@ -136,9 +137,9 @@ class App extends Component {
   };
   setTimeout(() => {
     if (this.state.click===0 && !this.state.isLose) {
-      console.log('прибавил')
       this.setState({round: this.state.round+1});
       this.setState({click: this.state.round});
+      this.setState({canIclicked: true});
       this.getAnswers();
       this.answersLight();
     }
@@ -165,7 +166,7 @@ class App extends Component {
 render () {
   return(
     <div className="App">
-      <Gamefield parts={this.state.parts} partOnClick={this.partOnClick} delayOnclick={this.delayOnclick} isVisible={this.state.isVisible} isLose={this.state.isLose} round={this.state.round}/>
+      <Gamefield parts={this.state.parts} partOnClick={this.partOnClick} delayOnclick={this.delayOnclick} isVisible={this.state.isVisible} isLose={this.state.isLose} round={this.state.round} canIclicked={this.state.canIclicked}/>
       <Menu startGame={this.startGame} difficults={this.state.difficults} chooseLevel={this.chooseLevel} isVisible={this.state.isVisible}  isLose={this.state.isLose} refresh={this.refresh}/>
     </div> 
   );     

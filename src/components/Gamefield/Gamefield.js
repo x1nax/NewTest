@@ -4,11 +4,11 @@ import classnames from 'classnames';
 
 
 
-const Gamefield = ({parts, partOnClick, delayOnclick, isVisible, isLose, round}) => (
+const Gamefield = ({parts, partOnClick, delayOnclick, isVisible, isLose, round , canIclicked}) => (
 <div>
-<div className={classnames ({[styles.Gamefield]: true, [styles.isVisible]: isVisible})}>
+<div className={classnames ({[styles.Gamefield]: true, [styles.isVisible]: isVisible,})}>
     {parts.map(part => <div key={parts.id} 
-                            className={classnames ({[styles.Part]: true, [styles.isClicked]: part.isClicked})} 
+                            className={classnames ({[styles.Part]: true, [styles.isClicked]: part.isClicked, [styles.canIclicked]: canIclicked})} 
                             onMouseDown={()=> partOnClick(part.id)}
                             onMouseUp={()=> delayOnclick()}>
                             <audio id={part.color} src={part.sound}></audio>
